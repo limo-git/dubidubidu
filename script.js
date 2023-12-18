@@ -10,11 +10,9 @@ const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-screen-start]")
 setPixelToWorldScale()
 window.addEventListener("resize",setPixelToWorldScale)
-
 document.addEventListener("keydown" , handleStart, { once: true })
 
-
-let lastTime
+let lastTime 
 let speedScale
 
 
@@ -33,7 +31,7 @@ function update(time) {
 
     lastTime = time
     window.requestAnimationFrame(update)
-}
+}   
 
 function updateSpeedScale(delta) {
     speedScale += delta * SPEED_SCALE_INCREASE
