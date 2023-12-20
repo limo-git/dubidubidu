@@ -1,4 +1,5 @@
-import { setupGround, updateGround } from "./ground.js"
+import {setupGround, updateGround} from "./ground.js"
+import {updateCat, setupCat} from "./cat.js"
 
 
 const WORLD_WIDTH = 100
@@ -26,6 +27,7 @@ function update(time) {
     const delta = time - lastTime
 
     updateGround(delta,speedScale)
+    updateCat(delta,speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
 
@@ -47,6 +49,7 @@ function handleStart() {
     speedScale = 1
     score = 0
     setupGround()
+    setupCat()
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
 }
