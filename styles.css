@@ -57,12 +57,13 @@ body{
 }
 
 .cat{
-    --bottom:6;
+    --bottom:9;
     position: absolute;
     left: 1%;
-    height: 25%;
+    height: 20%;
     bottom: calc(var(--bottom)*1%);
 }
+
 
 .tree {
     position: absolute;

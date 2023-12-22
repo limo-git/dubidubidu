@@ -1,5 +1,6 @@
 import {setupGround, updateGround} from "./ground.js"
-import {updateCat, setupCat} from "./cat.js"
+import {updateCat, setupCat, getCatRect, setCatLose} from "./cat.js"
+import {updatetree, setuptree, getTreeRects} from "./tree.js"
 
 
 const WORLD_WIDTH = 100
@@ -28,12 +29,27 @@ function update(time) {
 
     updateGround(delta,speedScale)
     updateCat(delta,speedScale)
+    updatetree(delta,speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
+    if (checkLose()) return handleLose()
 
     lastTime = time
     window.requestAnimationFrame(update)
 }   
+
+function checkLose() {
+    const catRect = getCatRect()
+    return getTreeRects().some(rect => isCollision(rect,catRect))
+}
+function isCollision(rect1,rect2) {
+return (
+    rect1.left < rect2.right &&
+    rect1.top < rect2.bottom &&
+    rect1.right > rect2.left &&
+    rect1.bottom > rect2.top
+  )
+}
 
 function updateSpeedScale(delta) {
     speedScale += delta * SPEED_SCALE_INCREASE
@@ -50,10 +66,18 @@ function handleStart() {
     score = 0
     setupGround()
     setupCat()
+    setuptree()
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
 }
 
+function handleLose (){
+setCatLose()
+setTimeout(() => {
+    document.addEventListener("keydown",handleStart, {once: true})
+    startScreenElem.classList.remove("hide")
+},100)
+}
 function setPixelToWorldScale() {
     let worldToPixelScale 
 
