@@ -29,8 +29,7 @@ export function updatetree(delta, speedScale) {
   
     if (nextTreeTime <= 0) {
       createTree()
-      nextTreeTime =
-        randomNumberBetween(TREE_INTERVAL_MIN, TREE_INTERVAL_MAX) / speedScale
+      nextTreeTime = randomNumberBetween(TREE_INTERVAL_MIN, TREE_INTERVAL_MAX) / speedScale
     }
     nextTreeTime -= delta
   }
@@ -42,7 +41,7 @@ export function getTreeRects() {
         })
 }
 function createTree() {
-    const tree = document.createElement("img")
+    const tree = document.createElement("images")
     tree.dataset.tree = true
     tree.src = "images/tree.png"
     tree.classList.add("tree")
@@ -51,5 +50,5 @@ function createTree() {
 }
 
 function randomNumberBetween(min,max) {
-    Math.floor(Math.random() *(max-min+1)+min)
+  return  Math.floor(Math.random() * (max - min +1) + min)
 }
