@@ -15,10 +15,11 @@ body{
 }
 
 .background {
-    width:1000999vw;
-    height: 80vh;
-    background-size: cover;
-    z-index: -1;
+    width:100vw;
+    height: 75vh;
+    
+    z-index: -5;
+    position: absolute;
 }
 
 .world {
@@ -52,15 +53,15 @@ body{
     --left:0;
     position: absolute;
     width: 150%;
-    bottom:15%;
+    bottom:18%;
     left: calc(var(--left)*1%);
 }
 
 .cat{
-    --bottom:9;
+    --bottom:15;
     position: absolute;
     left: 1%;
-    height: 20%;
+    height: 10%;
     bottom: calc(var(--bottom)*1%);
 }
 

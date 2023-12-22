@@ -4,8 +4,8 @@ import {getCustomProperty,
 
 
 const catElem = document.querySelector("[data-cat]");
-const JUMP_SPEED = 0.40
-const GRAVITY = 0.0045
+const JUMP_SPEED = 0.5
+const GRAVITY = 0.0032   
 const CAT_FRMAE_COUNT = 2
 const FRAME_TIME = 225
 
@@ -22,7 +22,7 @@ export function setupCat() {
     currentFrameTime = 0
     yVelocity=0 
     
-    setCustomProperty(catElem,"--bottom",12)
+    setCustomProperty(catElem,"--bottom",15)
     document.removeEventListener("keydown", onJump)
     document.addEventListener("keydown", onJump)
 
@@ -43,7 +43,7 @@ export function setCatLose (){
 function handleRun(delta,speedScale) {
     if (isJumping) {
     catElem.src = `images/cat-run-1.png`
-    catElem.style.height="10%";
+    catElem.style.height="7%";
     return
 } if (currentFrameTime >= FRAME_TIME) {
     catFrame = (catFrame + 1) % CAT_FRMAE_COUNT
@@ -51,8 +51,8 @@ function handleRun(delta,speedScale) {
     currentFrameTime -= FRAME_TIME
 
 
-    catElem.style.height="10%";
-    catElem.style.bottom= 15;
+    catElem.style.height="7%";
+    catElem.style.bottom= 17;
     
     
 }
@@ -64,8 +64,8 @@ function handleJump(delta){
     if (!isJumping) return
     incrementCustomProperty(catElem, "--bottom", yVelocity*delta)
 
-    if (getCustomProperty(catElem,"--bottom") <= 12) {
-        setCustomProperty(catElem,"--bottom",12)
+    if (getCustomProperty(catElem,"--bottom") <= 17) {
+        setCustomProperty(catElem,"--bottom",17)
         isJumping = false
     }
     yVelocity -= GRAVITY * delta

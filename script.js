@@ -32,11 +32,21 @@ function update(time) {
     updatetree(delta,speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
+ 
     if (checkLose()) return handleLose()
 
     lastTime = time
     window.requestAnimationFrame(update)
 }   
+
+function playMusic(chipi,loop) {
+    let audio = new Audio(chipi);
+    audio.loop = loop;
+    audio.play();
+
+}
+
+
 
 function checkLose() {
     const catRect = getCatRect()
@@ -67,6 +77,7 @@ function handleStart() {
     setupGround()
     setupCat()
     setuptree()
+    playMusic("audio/chipi.mp3",true);
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
 }
@@ -76,7 +87,7 @@ setCatLose()
 setTimeout(() => {
     document.addEventListener("keydown",handleStart, {once: true})
     startScreenElem.classList.remove("hide")
-},100)
+},10)
 }
 function setPixelToWorldScale() {
     let worldToPixelScale 
